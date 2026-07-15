@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROJECT 21 — Life Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="brand"><span class="dot"></span>PROJECT 21</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" onclick="closeNav()">Home</a></li>
+      <li><a href="#about" onclick="closeNav()">About</a></li>
+      <li><a href="#projects" onclick="closeNav()">Projects</a></li>
+      <li><a href="#books" onclick="closeNav()">Books</a></li>
+      <li><a href="#trading" onclick="closeNav()">Trading</a></li>
+      <li><a href="#finance" onclick="closeNav()">Finance</a></li>
+      <li><a href="#journal" onclick="closeNav()">Journal</a></li>
+      <li><a href="#dashboard" onclick="closeNav()">Dashboard</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ============ HOME / HERO ============ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-eyebrow">LIFE OPERATING SYSTEM</div>
+    <h1>PROJECT 21</h1>
+    <h2>Build Your Future</h2>
+    <div class="tagline">BUILD • LEARN • GROW</div>
+    <p>Satu sistem untuk mengelola, mengukur, dan mendokumentasikan seluruh perjalanan hidupmu — dari bacaan, trading, sampai target 10 tahun ke depan. Setiap aktivitas nyata membangun karaktermu.</p>
+    <a href="#about" class="btn btn-primary">Mulai Perjalanan</a>
+  </div>
+</section>
+
+<!-- ============ CHARACTER PROFILE ============ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Character Profile</div>
+        <div class="section-sub">Karaktermu tumbuh berdasarkan aktivitas nyata yang kamu selesaikan.</div>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="openProfileModal()">Edit Profil</button>
+    </div>
+
+    <div class="char-wrap reveal">
+      <div class="avatar-box">
+        <div class="avatar" id="avatarEl" onclick="openProfileModal()">R</div>
+        <input type="file" id="avatarFileInput" accept="image/*" style="display:none;">
+        <div class="avatar-edit-hint">Klik avatar untuk edit</div>
+        <div class="char-name" id="charName">Rofik</div>
+        <div class="char-rank" id="charRank">EXPLORER</div>
+        <div class="char-title" id="charTitleTxt">"Newcomer of Project 21"</div>
+        <div class="char-motto" id="charMotto">"Disiplin hari ini adalah kebebasan di masa depan."</div>
+      </div>
+
+      <div class="char-info">
+        <div style="position:relative;margin-bottom:18px;">
+          <div class="char-stats-row"><span>Level <b id="levelNum">1</b></span><span id="xpText">0 / 100 XP</span></div>
+          <div class="xp-bar-outer"><div class="xp-bar-inner" id="xpBar" style="width:0%"></div></div>
+        </div>
+
+        <div class="grid grid-4" style="margin-bottom:20px;">
+          <div class="card stat-card" style="padding:14px;">
+            <div class="stat-value" style="font-size:20px;" id="totalXPVal">0</div>
+            <div class="stat-label">Total XP</div>
+          </div>
+          <div class="card stat-card" style="padding:14px;">
+            <div class="stat-value" style="font-size:20px;" id="legacyVal">0</div>
+            <div class="stat-label">Legacy</div>
+          </div>
+          <div class="card stat-card" style="padding:14px;">
+            <div class="stat-value" style="font-size:20px;" id="powerVal">0</div>
+            <div class="stat-label">Power</div>
+          </div>
+          <div class="card stat-card" style="padding:14px;">
+            <div class="stat-value" style="font-size:20px;" id="joinDateVal">-</div>
+            <div class="stat-label">Join Date</div>
+          </div>
+        </div>
+
+        <div id="skillBars"></div>
+
+        <div class="mission-current">
+          <b>Current Mission:</b> <span id="currentMissionTxt">Belum ada misi aktif. Tambahkan quest pertamamu di bawah.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rank-track" id="rankTrack"></div>
+  </div>
+</section>
+
+<!-- ============ TODAY'S MISSION ============ -->
+<section class="section" id="missions">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Today's Mission</div>
+        <div class="section-sub">Selesaikan quest untuk mendapatkan XP dan menaikkan skill terkait.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openMissionModal()">+ Tambah Mission</button>
+    </div>
+    <div class="mission-toolbar">
+      <div class="filter-chips" id="missionFilters"></div>
+    </div>
+    <div id="missionList"></div>
+  </div>
+</section>
+
+<!-- ============ TARGETS ============ -->
+<section class="section" id="targets">
+  <div class="container">
+    <div class="section-title">Life Targets</div>
+    <div class="section-sub">Target dapat diubah langsung tanpa mengubah kode apa pun.</div>
+    <div class="grid grid-3" id="targetGrid"></div>
+  </div>
+</section>
+
+<!-- ============ PROJECT MANAGER ============ -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Project Manager</div>
+        <div class="section-sub">Kelola proyek jangka panjang dan pantau progressnya.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openProjectModal()">+ Tambah Project</button>
+    </div>
+    <div class="list-grid" id="projectList"></div>
+  </div>
+</section>
+
+<!-- ============ BOOK LIBRARY ============ -->
+<section class="section" id="books">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Book Library</div>
+        <div class="section-sub">Setiap buku yang selesai dibaca menaikkan Reading Skill.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openBookModal()">+ Tambah Buku</button>
+    </div>
+    <div class="list-grid" id="bookList"></div>
+  </div>
+</section>
+
+<!-- ============ TRADING JOURNAL ============ -->
+<section class="section" id="trading">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Trading Journal</div>
+        <div class="section-sub">Catat setiap trade untuk membangun Trading Skill dan disiplin.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openTradeModal()">+ Tambah Trade</button>
+    </div>
+    <div class="list-grid" id="tradeList"></div>
+  </div>
+</section>
+
+<!-- ============ FINANCE ============ -->
+<section class="section" id="finance">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Financial Goals</div>
+        <div class="section-sub">Dana darurat, tabungan, biaya nikah, dan target keuangan lainnya.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openGoalModal()">+ Tambah Goal</button>
+    </div>
+    <div class="list-grid" id="goalList" style="margin-bottom:60px;"></div>
+
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Asset Allocation</div>
+        <div class="section-sub">Alokasi aset dari portofolio investasi kamu.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openAssetModal()">+ Tambah Aset</button>
+    </div>
+    <div class="card" id="allocSummaryCard" style="margin-bottom:20px;"></div>
+    <div id="allocList"></div>
+  </div>
+</section>
+
+<!-- ============ JOURNAL (reflection log) ============ -->
+<section class="section" id="journal">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Journal &amp; Achievements</div>
+        <div class="section-sub">Pencapaian terbuka otomatis berdasarkan progress karaktermu.</div>
+      </div>
+    </div>
+    <div class="grid grid-4" id="achievementGrid"></div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD / STATISTICS ============ -->
+<section class="section" id="dashboard">
+  <div class="container">
+    <div class="section-title">Statistics Dashboard</div>
+    <div class="section-sub">Ringkasan seluruh perjalanan hidupmu dalam angka.</div>
+    <div class="grid grid-4" id="statsGrid" style="margin-bottom:32px;"></div>
+
+    <div class="chart-tabs" id="chartTabs"></div>
+    <div class="card chart-card">
+      <canvas id="mainChart" height="90"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact">
+  <div class="container">
+    <div class="brand" style="justify-content:center;"><span class="dot"></span>PROJECT 21</div>
+    <p class="muted">Sebuah Life Operating System pribadi — dibangun untuk digunakan bertahun-tahun.</p>
+    <div class="contact-grid">
+      <button class="btn btn-outline btn-sm" onclick="exportData()">Export Data</button>
+      <label class="btn btn-outline btn-sm" style="cursor:pointer;">Import Data<input type="file" id="importFile" accept=".json" style="display:none;"></label>
+      <button class="btn btn-danger btn-sm" onclick="confirmReset()">Reset Semua Data</button>
+    </div>
+    <p class="muted" style="margin-top:24px;font-size:12px;">© 2026 PROJECT 21. Auto-save aktif — data tersimpan otomatis di perangkat ini.</p>
+  </div>
+</footer>
+
+<div id="toast-wrap"></div>
+
+<!-- ============ MODALS ============ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalBody"></div>
+</div>
+
+<script src="state.js"></script>
+<script src="render.js"></script>
+<script src="chart.js"></script>
+<script src="modals.js"></script>
+<script src="finance.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
