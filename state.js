@@ -32,6 +32,8 @@ function defaultState(){
     projects:[],
     financeGoals:[], // {id,name,category,target,current,deadline,notes}
     assetAllocation:[], // {id,assetName,category,value}
+    readingSessions:[], // {id,date,bookId,minutes,pages}
+    activeReadingSession:null, // {startTime,bookId}
     achievements:{}, // id -> {unlocked:true, date}
     stats:{activeDays:0, lastActiveDate:null, learningHours:0, readingHours:0, tradingHours:0},
     history:[] // {date, totalXP}
@@ -47,7 +49,7 @@ function loadState(){
     const parsed = JSON.parse(raw);
     // merge with defaults to survive future field additions
     const def = defaultState();
-    return {...def, ...parsed, profile:{...def.profile,...parsed.profile}, skills:{...def.skills,...(parsed.skills||{})}, targets:{...def.targets,...(parsed.targets||{})}, stats:{...def.stats,...(parsed.stats||{})}, financeGoals:parsed.financeGoals||[], assetAllocation:parsed.assetAllocation||[]};
+    return {...def, ...parsed, profile:{...def.profile,...parsed.profile}, skills:{...def.skills,...(parsed.skills||{})}, targets:{...def.targets,...(parsed.targets||{})}, stats:{...def.stats,...(parsed.stats||{})}, financeGoals:parsed.financeGoals||[], assetAllocation:parsed.assetAllocation||[], readingSessions:parsed.readingSessions||[], activeReadingSession:parsed.activeReadingSession||null};
   }catch(e){
     console.warn('Load failed, using defaults', e);
     return defaultState();

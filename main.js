@@ -5,6 +5,7 @@ function renderAll(){
   renderMissions();
   renderTargets();
   renderProjects();
+  renderReadingTracker();
   renderBooks();
   renderTrades();
   renderFinance();

@@ -193,6 +193,7 @@ function renderBooks(){
       <div class="mission-meta" style="margin:8px 0;">
         <span class="badge">${escapeHtml(b.category||'-')}</span>
         <span class="status-tag ${statusClass(b.status)}">${b.status}</span>
+        <span class="badge">${b.format==='Ebook'?'📱 Ebook':'📘 Fisik'}</span>
         ${b.pages?`<span class="badge">${b.pages}p</span>`:''}
       </div>
       ${b.rating?`<div class="rating">${'★'.repeat(b.rating)}${'☆'.repeat(5-b.rating)}</div>`:''}
