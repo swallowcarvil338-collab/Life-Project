@@ -56,6 +56,7 @@
       <div class="avatar-box">
         <div class="avatar" id="avatarEl" onclick="openProfileModal()">R</div>
         <input type="file" id="avatarFileInput" accept="image/*" style="display:none;">
+        <input type="file" id="bookCoverFileInput" accept="image/*" style="display:none;">
         <div class="avatar-edit-hint">Klik avatar untuk edit</div>
         <div class="char-name" id="charName">Rofik</div>
         <div class="char-rank" id="charRank">EXPLORER</div>
@@ -159,6 +160,11 @@
       <button class="btn btn-primary btn-sm" onclick="openBookModal()">+ Tambah Buku</button>
     </div>
     <div class="list-grid" id="bookList"></div>
+
+    <div style="margin-top:32px;">
+      <div class="section-sub" style="margin-bottom:12px;">Selesai dibaca (geser ke samping)</div>
+      <div class="finished-books-row" id="finishedBookRow"></div>
+    </div>
   </div>
 </section>
 
@@ -172,7 +178,13 @@
       </div>
       <button class="btn btn-primary btn-sm" onclick="openTradeModal()">+ Tambah Trade</button>
     </div>
-    <div class="list-grid" id="tradeList"></div>
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-title" style="font-size:16px;">Equity Curve (Profit/Loss Kumulatif)</div>
+      <canvas id="tradeEquityChart" height="90"></canvas>
+    </div>
+    <div class="scroll-x">
+      <table id="tradeTable"></table>
+    </div>
   </div>
 </section>
 
@@ -250,8 +262,13 @@
 
 <script src="state.js"></script>
 <script src="render.js"></script>
+<script src="render2.js"></script>
+<script src="render3.js"></script>
 <script src="chart.js"></script>
 <script src="modals.js"></script>
+<script src="modals2.js"></script>
+<script src="modals3.js"></script>
+<script src="modals4.js"></script>
 <script src="finance.js"></script>
 <script src="reading.js"></script>
 <script src="main.js"></script>

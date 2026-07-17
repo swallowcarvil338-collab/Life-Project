@@ -76,5 +76,52 @@ function drawChart(){
     ctx.lineTo(w-pad,h-pad); ctx.lineTo(pad,h-pad); ctx.closePath(); ctx.fill();
   }
 }
-window.addEventListener('resize', ()=> drawChart());
+window.addEventListener('resize', ()=> { drawChart(); drawTradeEquityChart(); });
+
+function drawTradeEquityChart(){
+  const canvas = document.getElementById('tradeEquityChart');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth || canvas.parentElement.clientWidth-48;
+  const h = 220;
+  canvas.width = w*dpr; canvas.height = h*dpr;
+  canvas.style.width = w+'px'; canvas.style.height = h+'px';
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,w,h);
+
+  const sorted = [...state.trades].sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+  let cum = 0;
+  const points = [0, ...sorted.map(t=>{ cum += (parseFloat(t.profit)||0)-(parseFloat(t.loss)||0); return cum; })];
+
+  const max = Math.max(...points, 0);
+  const min = Math.min(...points, 0);
+  const pad = 24;
+  const usableW = w - pad*2;
+  const usableH = h - pad*2;
+
+  ctx.strokeStyle = '#334155'; ctx.lineWidth = 1;
+  for(let i=0;i<=4;i++){
+    const y = pad + usableH*i/4;
+    ctx.beginPath(); ctx.moveTo(pad,y); ctx.lineTo(w-pad,y); ctx.stroke();
+  }
+  // zero baseline
+  const zeroY = h - pad - ((0-min)/((max-min)||1))*usableH;
+  ctx.strokeStyle = '#475569'; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(pad,zeroY); ctx.lineTo(w-pad,zeroY); ctx.stroke();
+  ctx.setLineDash([]);
+
+  const finalPositive = points[points.length-1] >= 0;
+  ctx.strokeStyle = finalPositive ? '#22C55E' : '#EF4444';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  points.forEach((v,i)=>{
+    const x = pad + (points.length<=1?0:usableW*i/(points.length-1));
+    const y = h-pad-((v-min)/((max-min)||1))*usableH;
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+  ctx.fillStyle = finalPositive ? 'rgba(34,197,94,0.10)' : 'rgba(239,68,68,0.10)';
+  ctx.lineTo(w-pad,h-pad); ctx.lineTo(pad,h-pad); ctx.closePath(); ctx.fill();
+}
 

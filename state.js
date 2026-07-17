@@ -35,7 +35,7 @@ function defaultState(){
     readingSessions:[], // {id,date,bookId,minutes,pages}
     activeReadingSession:null, // {startTime,bookId}
     achievements:{}, // id -> {unlocked:true, date}
-    stats:{activeDays:0, lastActiveDate:null, learningHours:0, readingHours:0, tradingHours:0},
+    stats:{activeDays:0, lastActiveDate:null, learningHours:0, readingHours:0, tradingHours:0, missionCompletions:0},
     history:[] // {date, totalXP}
   };
 }
@@ -49,7 +49,14 @@ function loadState(){
     const parsed = JSON.parse(raw);
     // merge with defaults to survive future field additions
     const def = defaultState();
-    return {...def, ...parsed, profile:{...def.profile,...parsed.profile}, skills:{...def.skills,...(parsed.skills||{})}, targets:{...def.targets,...(parsed.targets||{})}, stats:{...def.stats,...(parsed.stats||{})}, financeGoals:parsed.financeGoals||[], assetAllocation:parsed.assetAllocation||[], readingSessions:parsed.readingSessions||[], activeReadingSession:parsed.activeReadingSession||null};
+    const merged = {...def, ...parsed, profile:{...def.profile,...parsed.profile}, skills:{...def.skills,...(parsed.skills||{})}, targets:{...def.targets,...(parsed.targets||{})}, stats:{...def.stats,...(parsed.stats||{})}, financeGoals:parsed.financeGoals||[], assetAllocation:parsed.assetAllocation||[], readingSessions:parsed.readingSessions||[], activeReadingSession:parsed.activeReadingSession||null};
+    // migrate missions: old format used a single boolean `done`; new format resets daily via completedDates
+    merged.missions = (merged.missions||[]).map(m=>{
+      if(m.completedDates) return m;
+      const today = new Date().toISOString().slice(0,10);
+      return {...m, completedDates: m.done ? [today] : []};
+    });
+    return merged;
   }catch(e){
     console.warn('Load failed, using defaults', e);
     return defaultState();
@@ -65,6 +72,8 @@ function saveState(){
 }
 
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function isMissionDoneToday(m){ return (m.completedDates||[]).includes(todayStr()); }
 
 /* ---------- 2. ENGINE: XP / LEVEL / RANK ---------- */
 function xpRequired(level){
@@ -134,7 +143,7 @@ const ACHIEVEMENT_DEFS = [
   {id:'books_10', name:'10 Books', icon:'📚', desc:'Selesaikan 10 buku', test:s=>s.books.filter(b=>b.status==='Selesai').length>=10},
   {id:'books_50', name:'50 Books', icon:'🏛️', desc:'Selesaikan 50 buku', test:s=>s.books.filter(b=>b.status==='Selesai').length>=50},
   {id:'books_100', name:'100 Books', icon:'👑', desc:'Selesaikan 100 buku', test:s=>s.books.filter(b=>b.status==='Selesai').length>=100},
-  {id:'first_quest', name:'First Quest', icon:'⚔️', desc:'Selesaikan mission pertama', test:s=>s.missions.filter(m=>m.done).length>=1},
+  {id:'first_quest', name:'First Quest', icon:'⚔️', desc:'Selesaikan mission pertama', test:s=>s.stats.missionCompletions>=1},
   {id:'level_10', name:'Level 10', icon:'🔥', desc:'Capai level 10', test:s=>s.profile.level>=10},
   {id:'level_25', name:'Level 25', icon:'🌟', desc:'Capai level 25', test:s=>s.profile.level>=25},
   {id:'level_50', name:'Level 50', icon:'💎', desc:'Capai level 50', test:s=>s.profile.level>=50},

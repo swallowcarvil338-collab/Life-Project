@@ -4,6 +4,14 @@ function dayKey(d){ return d.toISOString().slice(0,10); }
 function minutesOnDate(dateStr){
   return state.readingSessions.filter(s=>s.date===dateStr).reduce((a,s)=>a+(s.minutes||0),0);
 }
+function pagesOnDate(dateStr){
+  return state.readingSessions.filter(s=>s.date===dateStr).reduce((a,s)=>a+(s.pages||0),0);
+}
+function fmtDuration(mins){
+  if(mins<60) return `${mins} menit`;
+  const h = Math.floor(mins/60), m = mins%60;
+  return m>0 ? `${h} jam ${m} menit` : `${h} jam`;
+}
 
 function readingStreak(){
   let streak = 0;
@@ -30,6 +38,8 @@ function renderReadingTracker(){
   const streak = readingStreak();
   const active = state.activeReadingSession;
   const ongoingBooks = state.books.filter(b=>b.status!=='Selesai');
+  const todayMins = minutesOnDate(dayKey(new Date()));
+  const todayPages = pagesOnDate(dayKey(new Date()));
 
   const timerSection = active ? `
     <div class="timer-display" id="timerDisplay">${formatElapsed(Date.now()-active.startTime)}</div>
@@ -50,6 +60,7 @@ function renderReadingTracker(){
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">${timerSection}</div>
     </div>
+    <div class="muted" style="font-size:13px;margin-bottom:16px;">Hari ini: <b style="color:var(--text);">${fmtDuration(todayMins)}</b> · <b style="color:var(--text);">${todayPages} halaman</b></div>
     <div class="heatmap-grid" id="heatmapGrid"></div>
     <div class="heatmap-legend">
       <span>Sedikit</span>
@@ -67,9 +78,10 @@ function renderReadingTracker(){
     const d = new Date(); d.setDate(d.getDate()-i);
     const key = dayKey(d);
     const mins = minutesOnDate(key);
+    const pages = pagesOnDate(key);
     let lvl = '';
     if(mins>=60) lvl = 'lvl3'; else if(mins>=30) lvl = 'lvl2'; else if(mins>0) lvl = 'lvl1';
-    cells.push(`<div class="heat-cell ${lvl}" title="${key}: ${mins} menit"></div>`);
+    cells.push(`<div class="heat-cell ${lvl}" title="${key}: ${mins} menit, ${pages} halaman"></div>`);
   }
   grid.innerHTML = cells.join('');
 }
@@ -114,5 +126,4 @@ function confirmStopSession(){
   addSkillXP('reading', Math.min(25, Math.max(5, Math.round(minutes/4))));
   closeModal();
   saveAndRenderAll();
-    }
-    
+}

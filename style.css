@@ -343,3 +343,36 @@ footer .brand{justify-content:center;margin-bottom:12px;}
 .heat-cell.lvl2{background:rgba(56,189,248,0.55);border-color:transparent;}
 .heat-cell.lvl3{background:var(--primary);border-color:transparent;}
 .heatmap-legend{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);margin-top:12px;justify-content:flex-end;}
+
+/* ---------- Book Covers & Finished Row ---------- */
+.book-cover{
+  width:100%;aspect-ratio:3/4;border-radius:10px;object-fit:cover;
+  background:var(--section);border:1px solid var(--border);margin-bottom:10px;
+}
+.book-cover-placeholder{
+  width:100%;aspect-ratio:3/4;border-radius:10px;background:var(--section);
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:32px;color:var(--text2);margin-bottom:10px;
+}
+.finished-books-row{display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;-webkit-overflow-scrolling:touch;}
+.finished-book-card{
+  flex:0 0 150px;background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:12px;cursor:pointer;
+}
+.finished-book-card .book-cover,.finished-book-card .book-cover-placeholder{margin-bottom:8px;}
+.finished-book-card .fb-title{font-size:13px;font-weight:600;line-height:1.4;}
+.finished-book-card .fb-meta{font-size:11px;color:var(--text2);margin-top:4px;}
+.cover-upload-preview{width:120px;aspect-ratio:3/4;border-radius:10px;object-fit:cover;margin:0 auto 10px;border:1px solid var(--border);}
+.cover-upload-row{text-align:center;margin-bottom:16px;}
+
+/* ---------- Trading Spreadsheet Table ---------- */
+#tradeTable{width:100%;border-collapse:collapse;min-width:820px;font-size:13px;}
+#tradeTable th{
+  text-align:left;padding:10px 12px;background:var(--section);color:var(--text2);
+  font-size:11px;letter-spacing:0.5px;text-transform:uppercase;border-bottom:1px solid var(--border);
+  position:sticky;top:0;
+}
+#tradeTable td{padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap;}
+#tradeTable tr:hover td{background:rgba(56,189,248,0.05);}
+#tradeTable .net-pos{color:var(--success);font-weight:700;}
+#tradeTable .net-neg{color:var(--danger);font-weight:700;}
