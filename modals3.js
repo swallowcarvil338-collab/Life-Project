@@ -1,7 +1,9 @@
-function openBookModal(id){
+function openBookModal(id, keepCover){
   const editing = id ? state.books.find(b=>b.id===id) : null;
   currentEditingBookId = id || '';
-  tempBookCover = editing ? (editing.cover||null) : null;
+  if(!keepCover){
+    tempBookCover = editing ? (editing.cover||null) : null;
+  }
   openModal(`
     <div class="modal-head"><h3>${editing?'Edit':'Tambah'} Buku</h3><button class="modal-close" onclick="closeModal()">×</button></div>
     <div class="cover-upload-row">
@@ -44,11 +46,11 @@ document.getElementById('bookCoverFileInput').addEventListener('change', functio
   if(!file || !file.type.startsWith('image/')){ e.target.value=''; return; }
   resizeImageFile(file, 500, dataUrl=>{
     tempBookCover = dataUrl;
-    openBookModal(currentEditingBookId);
+    openBookModal(currentEditingBookId, true);
   });
   e.target.value = '';
 });
-function removeBookCover(){ tempBookCover = null; openBookModal(currentEditingBookId); }
+function removeBookCover(){ tempBookCover = null; openBookModal(currentEditingBookId, true); }
 function resizeImageFile(file, maxDim, callback){
   const reader = new FileReader();
   reader.onload = evt=>{
