@@ -27,6 +27,7 @@ function defaultState(){
     skills: Object.fromEntries(SKILL_LIST.map(s=>[s,{level:1,xp:0}])),
     missions:[],
     targets:{oneYear:'',threeYear:'',fiveYear:'',tenYear:'',lifeMission:''},
+    targetGoals:[], // {id,period,category,text,done,doneDate}
     books:[],
     trades:[],
     projects:[],
@@ -34,6 +35,7 @@ function defaultState(){
     assetAllocation:[], // {id,assetName,category,value}
     readingSessions:[], // {id,date,bookId,minutes,pages}
     activeReadingSession:null, // {startTime,bookId}
+    dailyLogs:[], // {date,mood,evaluation,gratitude:[string,string,string]}
     achievements:{}, // id -> {unlocked:true, date}
     stats:{activeDays:0, lastActiveDate:null, learningHours:0, readingHours:0, tradingHours:0, missionCompletions:0},
     history:[] // {date, totalXP}
@@ -56,6 +58,15 @@ function loadState(){
       const today = new Date().toISOString().slice(0,10);
       return {...m, completedDates: m.done ? [today] : []};
     });
+    merged.targetGoals = merged.targetGoals || [];
+    merged.dailyLogs = merged.dailyLogs || [];
+    if(merged.targetGoals.length===0 && merged.targets){
+      Object.keys(merged.targets).forEach(period=>{
+        if(merged.targets[period] && merged.targets[period].trim()){
+          merged.targetGoals.push({id:uid(), period, category:'Umum', text:merged.targets[period].trim(), done:false});
+        }
+      });
+    }
     return merged;
   }catch(e){
     console.warn('Load failed, using defaults', e);

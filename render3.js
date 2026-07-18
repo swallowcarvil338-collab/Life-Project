@@ -1,13 +1,13 @@
 function renderTrades(){
   const table = document.getElementById('tradeTable');
   if(state.trades.length===0){
-    table.innerHTML = `<tbody><tr><td style="white-space:normal;padding:24px;text-align:center;" colspan="10">
+    table.innerHTML = `<tbody><tr><td style="white-space:normal;padding:24px;text-align:center;" colspan="11">
       <div class="big" style="font-size:32px;">📈</div>Belum ada trade. Tambahkan entri jurnal pertamamu.
     </td></tr></tbody>`;
     drawTradeEquityChart();
     return;
   }
-  const sorted = [...state.trades].sort((a,b)=> (b.date||'').localeCompare(a.date||''));
+  const sorted = [...state.trades].reverse().sort((a,b)=> (b.date||'').localeCompare(a.date||''));
   const rows = sorted.map(t=>{
     const net = (parseFloat(t.profit)||0) - (parseFloat(t.loss)||0);
     return `<tr>
@@ -17,6 +17,7 @@ function renderTrades(){
       <td>${t.entry??'-'}</td>
       <td>${t.exit??'-'}</td>
       <td>${t.rr??'-'}</td>
+      <td>${escapeHtml(t.method||'-')}</td>
       <td class="${net>=0?'net-pos':'net-neg'}">${net>=0?'+':''}${net.toFixed(2)}</td>
       <td>${escapeHtml(t.emotion||'-')}</td>
       <td style="white-space:normal;min-width:180px;">${escapeHtml(t.evaluation||'-')}</td>
@@ -30,7 +31,7 @@ function renderTrades(){
   }).join('');
   table.innerHTML = `
     <thead><tr>
-      <th>Tanggal</th><th>Pair</th><th>Bias</th><th>Entry</th><th>Exit</th><th>RR</th><th>Net</th><th>Emosi</th><th>Evaluasi</th><th>Aksi</th>
+      <th>Tanggal</th><th>Pair</th><th>Bias</th><th>Entry</th><th>Exit</th><th>RR</th><th>Metode</th><th>Net</th><th>Emosi</th><th>Evaluasi</th><th>Aksi</th>
     </tr></thead>
     <tbody>${rows}</tbody>
   `;

@@ -3,24 +3,19 @@ function renderAll(){
   renderProfile();
   renderMissionFilters();
   renderMissions();
-  renderTargets();
+  renderTargetGoals();
   renderProjects();
   renderReadingTracker();
   renderBooks();
   renderTrades();
   renderFinance();
+  renderDailyLog();
   renderAchievements();
   renderStats();
   renderChartTabs();
   drawChart();
 }
 function saveAndRenderAll(){ saveState(); renderAll(); }
-
-/* ---------- 22. NAV TOGGLE ---------- */
-document.getElementById('navToggle').addEventListener('click', ()=>{
-  document.getElementById('navLinks').classList.toggle('open');
-});
-function closeNav(){ document.getElementById('navLinks').classList.remove('open'); }
 
 /* ---------- 23. EXPORT / IMPORT / RESET ---------- */
 function exportData(){

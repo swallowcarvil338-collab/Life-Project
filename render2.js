@@ -1,20 +1,3 @@
-const TARGET_FIELDS = [
-  {key:'oneYear', label:'1 Tahun'},
-  {key:'threeYear', label:'3 Tahun'},
-  {key:'fiveYear', label:'5 Tahun'},
-  {key:'tenYear', label:'10 Tahun'},
-  {key:'lifeMission', label:'Life Mission'},
-];
-function renderTargets(){
-  document.getElementById('targetGrid').innerHTML = TARGET_FIELDS.map(f=>`
-    <div class="card target-card">
-      <button class="btn-icon edit-btn" onclick="openTargetModal('${f.key}')" title="Edit">✎</button>
-      <div class="target-period">${f.label}</div>
-      <div class="target-text">${state.targets[f.key] ? escapeHtml(state.targets[f.key]) : '<span class="muted">Belum diisi. Klik ✎ untuk menambahkan target.</span>'}</div>
-    </div>
-  `).join('');
-}
-
 /* ---------- 8. RENDER: PROJECTS ---------- */
 function statusClass(status){
   return 'status-'+status.toLowerCase().replace(/\s+/g,'-');

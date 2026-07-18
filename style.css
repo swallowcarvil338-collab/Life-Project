@@ -44,26 +44,15 @@ h1,h2,h3{font-weight:800;letter-spacing:0.5px;}
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
 }
-.navbar .container{
-  display:flex;align-items:center;justify-content:space-between;
-  height:68px;
-}
+.navbar-top{display:flex;align-items:center;justify-content:center;height:52px;}
 .brand{font-size:18px;font-weight:800;letter-spacing:2px;color:var(--text);display:flex;align-items:center;gap:8px;}
 .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px var(--primary);}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-size:14px;color:var(--text2);transition:color .2s;position:relative;}
-.nav-links a:hover{color:var(--primary);}
-.nav-toggle{display:none;background:none;color:var(--text);font-size:24px;}
-@media (max-width:860px){
-  .nav-links{
-    position:fixed;top:68px;left:0;right:0;
-    background:var(--card);border-bottom:1px solid var(--border);
-    flex-direction:column;padding:16px 24px;gap:16px;
-    transform:translateY(-150%);transition:transform .25s ease;
-  }
-  .nav-links.open{transform:translateY(0);}
-  .nav-toggle{display:block;}
-}
+.nav-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid var(--border);}
+.nav-scroll::-webkit-scrollbar{height:3px;}
+.nav-links{display:flex;gap:8px;list-style:none;padding:10px 16px;white-space:nowrap;width:max-content;margin:0 auto;}
+.nav-links li{flex-shrink:0;}
+.nav-links a{font-size:13px;color:var(--text2);transition:all .2s;padding:6px 14px;border-radius:999px;border:1px solid transparent;display:inline-block;}
+.nav-links a:hover{color:var(--primary);border-color:var(--border);}
 
 /* ---------- Buttons ---------- */
 .btn{
@@ -376,3 +365,35 @@ footer .brand{justify-content:center;margin-bottom:12px;}
 #tradeTable tr:hover td{background:rgba(56,189,248,0.05);}
 #tradeTable .net-pos{color:var(--success);font-weight:700;}
 #tradeTable .net-neg{color:var(--danger);font-weight:700;}
+
+/* ---------- Structured Target Goals ---------- */
+.target-card{display:flex;flex-direction:column;}
+.target-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.target-goal-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--border);}
+.target-goal-item:first-child{border-top:none;}
+.check-square{
+  width:22px;height:22px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;margin-top:2px;
+}
+.target-goal-item.done .check-square{background:var(--success);border-color:var(--success);color:#0B1120;}
+.target-goal-item.done .tg-text{text-decoration:line-through;color:var(--text2);}
+.tg-num{font-weight:800;color:var(--primary);font-size:13px;flex-shrink:0;margin-top:2px;}
+.tg-body{flex:1;min-width:0;}
+.tg-text{font-size:13px;}
+
+/* ---------- Daily Evaluation & Gratitude Journal ---------- */
+.mood-row{display:flex;gap:10px;margin-bottom:16px;}
+.mood-btn{
+  width:44px;height:44px;border-radius:10px;background:var(--section);border:1px solid var(--border);
+  font-size:20px;display:flex;align-items:center;justify-content:center;
+}
+.mood-btn.active{border-color:var(--primary);background:rgba(56,189,248,0.15);}
+.gratitude-input-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.gratitude-input-row span{color:var(--warning);font-size:16px;}
+.daylog-card{margin-bottom:14px;}
+.daylog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.daylog-date{font-weight:700;font-size:14px;}
+.daylog-mood{font-size:20px;}
+.daylog-gratitude-list{list-style:none;margin-top:8px;padding-left:0;}
+.daylog-gratitude-list li{font-size:13px;color:var(--text2);padding:3px 0;}
+.daylog-gratitude-list li:before{content:"🙏 ";}

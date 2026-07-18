@@ -12,20 +12,21 @@
 <body>
 
 <nav class="navbar">
-  <div class="container">
+  <div class="container navbar-top">
     <div class="brand"><span class="dot"></span>PROJECT 21</div>
+  </div>
+  <div class="nav-scroll">
     <ul class="nav-links" id="navLinks">
-      <li><a href="#home" onclick="closeNav()">Home</a></li>
-      <li><a href="#about" onclick="closeNav()">About</a></li>
-      <li><a href="#projects" onclick="closeNav()">Projects</a></li>
-      <li><a href="#books" onclick="closeNav()">Books</a></li>
-      <li><a href="#trading" onclick="closeNav()">Trading</a></li>
-      <li><a href="#finance" onclick="closeNav()">Finance</a></li>
-      <li><a href="#journal" onclick="closeNav()">Journal</a></li>
-      <li><a href="#dashboard" onclick="closeNav()">Dashboard</a></li>
-      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#trading">Trading</a></li>
+      <li><a href="#finance">Finance</a></li>
+      <li><a href="#journal">Journal</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   </div>
 </nav>
 
@@ -217,11 +218,13 @@
   <div class="container">
     <div class="section-header-row">
       <div>
-        <div class="section-title">Journal &amp; Achievements</div>
-        <div class="section-sub">Pencapaian terbuka otomatis berdasarkan progress karaktermu.</div>
+        <div class="section-title">Evaluasi Harian &amp; Jurnal Syukur</div>
+        <div class="section-sub">Refleksi singkat tiap hari — apa yang berjalan baik, apa yang perlu diperbaiki, dan apa yang disyukuri.</div>
       </div>
     </div>
-    <div class="grid grid-4" id="achievementGrid"></div>
+    <div class="card" id="dailyLogForm" style="margin-bottom:32px;"></div>
+    <div class="section-sub" style="margin-bottom:12px;">Riwayat</div>
+    <div id="dailyLogHistory"></div>
   </div>
 </section>
 
@@ -233,9 +236,12 @@
     <div class="grid grid-4" id="statsGrid" style="margin-bottom:32px;"></div>
 
     <div class="chart-tabs" id="chartTabs"></div>
-    <div class="card chart-card">
+    <div class="card chart-card" style="margin-bottom:40px;">
       <canvas id="mainChart" height="90"></canvas>
     </div>
+
+    <div class="section-sub" style="margin-bottom:12px;">Achievements</div>
+    <div class="grid grid-4" id="achievementGrid"></div>
   </div>
 </section>
 
@@ -271,6 +277,8 @@
 <script src="modals4.js"></script>
 <script src="finance.js"></script>
 <script src="reading.js"></script>
+<script src="targets.js"></script>
+<script src="dailylog.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

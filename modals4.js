@@ -12,6 +12,13 @@ function openTradeModal(id){
       </div>
       <div class="field"><label>RR</label><input id="f_rr" value="${editing?editing.rr||'':''}"></div>
     </div>
+    <div class="field"><label>Metode/Strategi</label>
+      <input id="f_method" list="methodOptions" placeholder="cth: Price Action, Breakout, Scalping" value="${editing?escapeHtml(editing.method||''):''}">
+      <datalist id="methodOptions">
+        <option value="Price Action"><option value="Breakout"><option value="Scalping">
+        <option value="Swing Trading"><option value="Support Resistance"><option value="Trend Following">
+      </datalist>
+    </div>
     <div class="form-grid">
       <div class="field"><label>Entry</label><input id="f_entry" type="number" step="any" value="${editing?editing.entry??'':''}"></div>
       <div class="field"><label>Exit</label><input id="f_exit" type="number" step="any" value="${editing?editing.exit??'':''}"></div>
@@ -41,6 +48,7 @@ function saveTrade(id){
     entry: document.getElementById('f_entry').value,
     exit: document.getElementById('f_exit').value,
     rr: document.getElementById('f_rr').value,
+    method: document.getElementById('f_method').value.trim(),
     profit: document.getElementById('f_profit').value,
     loss: document.getElementById('f_loss').value,
     screenshot: document.getElementById('f_screenshot').value.trim(),

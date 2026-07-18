@@ -31,23 +31,6 @@ function saveMission(id){
   closeModal(); saveAndRenderAll();
 }
 
-/* ---------- 17. TARGET MODAL ---------- */
-function openTargetModal(key){
-  const f = TARGET_FIELDS.find(t=>t.key===key);
-  openModal(`
-    <div class="modal-head"><h3>Edit Target ${f.label}</h3><button class="modal-close" onclick="closeModal()">×</button></div>
-    <div class="field"><label>${f.label}</label><textarea id="f_target" style="min-height:140px;">${escapeHtml(state.targets[key])}</textarea></div>
-    <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal()">Batal</button>
-      <button class="btn btn-primary" onclick="saveTarget('${key}')">Simpan</button>
-    </div>
-  `);
-}
-function saveTarget(key){
-  state.targets[key] = document.getElementById('f_target').value.trim();
-  closeModal(); saveAndRenderAll();
-}
-
 /* ---------- 18. PROJECT MODAL ---------- */
 function openProjectModal(id){
   const editing = id ? state.projects.find(p=>p.id===id) : null;
