@@ -75,7 +75,7 @@ function saveGoal(id){
   if(id){ Object.assign(state.financeGoals.find(g=>g.id===id), data); }
   else{ state.financeGoals.push({id:uid(),...data}); }
   if(data.target>0 && data.current>=data.target && wasIncomplete){
-    addXP(40); addSkillXP('economics',25);
+    addXP(40); addSkillXP('finance',25);
   }
   closeModal(); saveAndRenderAll();
 }
@@ -146,7 +146,7 @@ function saveAsset(id){
     value: parseFloat(document.getElementById('f_assetvalue').value)||0
   };
   if(id){ Object.assign(state.assetAllocation.find(a=>a.id===id), data); }
-  else{ state.assetAllocation.push({id:uid(),...data}); addXP(10); addSkillXP('economics',10); }
+  else{ state.assetAllocation.push({id:uid(),...data}); addXP(10); addSkillXP('finance',10); }
   closeModal(); saveAndRenderAll();
 }
 

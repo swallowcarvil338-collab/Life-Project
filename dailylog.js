@@ -43,7 +43,7 @@ function saveDailyLog(){
   } else {
     state.dailyLogs.push({date:todayStr(), mood:selectedMood, evaluation, gratitude});
     addXP(15);
-    addSkillXP('discipline',10);
+    addSkillXP('productivity',10);
   }
   saveAndRenderAll();
   showToast('Evaluasi harian tersimpan','');

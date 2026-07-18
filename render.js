@@ -60,6 +60,23 @@ function renderRankTrack(){
 /* ---------- 6. RENDER: MISSIONS ---------- */
 let activeMissionFilter = 'Semua';
 
+function missionStreak(){
+  const dateSet = new Set();
+  state.missions.forEach(m=> (m.completedDates||[]).forEach(d=> dateSet.add(d)));
+  let streak = 0;
+  let cursor = new Date();
+  if(!dateSet.has(todayStr())) cursor.setDate(cursor.getDate()-1);
+  while(dateSet.has(cursor.toISOString().slice(0,10))){
+    streak++;
+    cursor.setDate(cursor.getDate()-1);
+  }
+  return streak;
+}
+function renderMissionStreak(){
+  const el = document.getElementById('missionStreakDisplay');
+  if(el) el.innerHTML = `🔥 <b>${missionStreak()}</b> hari beruntun`;
+}
+
 function renderMissionFilters(){
   const cats = ['Semua', ...MISSION_CATEGORIES];
   document.getElementById('missionFilters').innerHTML = cats.map(c=>

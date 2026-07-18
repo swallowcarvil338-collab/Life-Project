@@ -43,7 +43,7 @@ function toggleTargetGoal(id){
   if(g.done){
     g.doneDate = todayStr();
     addXP(20);
-    addSkillXP('discipline',10);
+    addSkillXP('productivity',10);
   } else {
     g.doneDate = null;
     state.profile.totalXP = Math.max(0, state.profile.totalXP - 20);

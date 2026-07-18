@@ -9,7 +9,7 @@ function renderTrades(){
   }
   const sorted = [...state.trades].reverse().sort((a,b)=> (b.date||'').localeCompare(a.date||''));
   const rows = sorted.map(t=>{
-    const net = (parseFloat(t.profit)||0) - (parseFloat(t.loss)||0);
+    const net = (parseFloat(t.pipsProfit)||0) - (parseFloat(t.pipsLoss)||0);
     return `<tr>
       <td>${t.date||'-'}</td>
       <td><b>${escapeHtml(t.pair)}</b></td>
@@ -18,7 +18,7 @@ function renderTrades(){
       <td>${t.exit??'-'}</td>
       <td>${t.rr??'-'}</td>
       <td>${escapeHtml(t.method||'-')}</td>
-      <td class="${net>=0?'net-pos':'net-neg'}">${net>=0?'+':''}${net.toFixed(2)}</td>
+      <td class="${net>=0?'net-pos':'net-neg'}">${net>=0?'+':''}${net.toFixed(1)} pips</td>
       <td>${escapeHtml(t.emotion||'-')}</td>
       <td style="white-space:normal;min-width:180px;">${escapeHtml(t.evaluation||'-')}</td>
       <td>
@@ -31,7 +31,7 @@ function renderTrades(){
   }).join('');
   table.innerHTML = `
     <thead><tr>
-      <th>Tanggal</th><th>Pair</th><th>Bias</th><th>Entry</th><th>Exit</th><th>RR</th><th>Metode</th><th>Net</th><th>Emosi</th><th>Evaluasi</th><th>Aksi</th>
+      <th>Tanggal</th><th>Pair</th><th>Bias</th><th>Entry</th><th>Exit</th><th>RR</th><th>Metode</th><th>Net (pips)</th><th>Emosi</th><th>Evaluasi</th><th>Aksi</th>
     </tr></thead>
     <tbody>${rows}</tbody>
   `;
@@ -41,6 +41,32 @@ function deleteTrade(id){
   if(!confirm('Hapus trade ini?')) return;
   state.trades = state.trades.filter(t=>t.id!==id);
   saveAndRenderAll();
+}
+
+/* ---------- 10b. TRADING PLAN ---------- */
+function renderTradingPlan(){
+  const card = document.getElementById('tradingPlanCard');
+  card.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <div class="card-title" style="font-size:16px;">Trading Plan</div>
+      <button class="btn btn-outline btn-sm" onclick="openTradingPlanModal()">✎ Edit</button>
+    </div>
+    <div class="muted" style="font-size:13px;white-space:pre-wrap;">${state.tradingPlan?escapeHtml(state.tradingPlan):'Belum diisi. Tulis aturan/rencana trading kamu sendiri di sini — kapan entry, kapan skip, batas risiko harian, dll.'}</div>
+  `;
+}
+function openTradingPlanModal(){
+  openModal(`
+    <div class="modal-head"><h3>Edit Trading Plan</h3><button class="modal-close" onclick="closeModal()">×</button></div>
+    <div class="field"><textarea id="f_tradingplan" style="min-height:220px;">${escapeHtml(state.tradingPlan||'')}</textarea></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal()">Batal</button>
+      <button class="btn btn-primary" onclick="saveTradingPlan()">Simpan</button>
+    </div>
+  `);
+}
+function saveTradingPlan(){
+  state.tradingPlan = document.getElementById('f_tradingplan').value.trim();
+  closeModal(); saveAndRenderAll();
 }
 
 /* ---------- 11. RENDER: ACHIEVEMENTS ---------- */

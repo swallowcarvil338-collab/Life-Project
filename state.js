@@ -6,11 +6,11 @@
 /* ---------- 1. STATE ---------- */
 const STORAGE_KEY = 'project21_state_v1';
 
-const SKILL_LIST = ['learning','reading','trading','economics','business','ai','discipline','health','productivity'];
-const SKILL_LABEL = {learning:'Learning',reading:'Reading',trading:'Trading',economics:'Economics',business:'Business',ai:'AI',discipline:'Discipline',health:'Health',productivity:'Productivity'};
-const MISSION_CATEGORIES = ['Learning','Reading','Finance','Trading','Health','Self Development'];
+const SKILL_LIST = ['learning','reading','finance','trading','health','productivity'];
+const SKILL_LABEL = {learning:'Learning',reading:'Reading',finance:'Finance',trading:'Trading',health:'Health',productivity:'Productivity'};
+const MISSION_CATEGORIES = ['Learning','Reading','Finance','Trading','Health','Productivity'];
 const CATEGORY_SKILL_MAP = {
-  'Learning':'learning','Reading':'reading','Finance':'economics','Trading':'trading','Health':'health','Self Development':'discipline'
+  'Learning':'learning','Reading':'reading','Finance':'finance','Trading':'trading','Health':'health','Productivity':'productivity'
 };
 const RANKS = ['Explorer','Adventurer','Scholar','Strategist','Builder','Master','Legend','PROJECT 21'];
 const RANK_LEVEL_FLOOR = [1,6,11,21,31,46,61,100];
@@ -36,6 +36,8 @@ function defaultState(){
     readingSessions:[], // {id,date,bookId,minutes,pages}
     activeReadingSession:null, // {startTime,bookId}
     dailyLogs:[], // {date,mood,evaluation,gratitude:[string,string,string]}
+    notes:[], // {id,title,content,tag,date}
+    tradingPlan:'',
     achievements:{}, // id -> {unlocked:true, date}
     stats:{activeDays:0, lastActiveDate:null, learningHours:0, readingHours:0, tradingHours:0, missionCompletions:0},
     history:[] // {date, totalXP}
@@ -60,6 +62,9 @@ function loadState(){
     });
     merged.targetGoals = merged.targetGoals || [];
     merged.dailyLogs = merged.dailyLogs || [];
+    merged.notes = merged.notes || [];
+    // clean skills object down to the current 6-skill list (drops retired skills, keeps progress for kept ones)
+    merged.skills = Object.fromEntries(SKILL_LIST.map(k=>[k, merged.skills[k] || {level:1,xp:0}]));
     if(merged.targetGoals.length===0 && merged.targets){
       Object.keys(merged.targets).forEach(period=>{
         if(merged.targets[period] && merged.targets[period].trim()){

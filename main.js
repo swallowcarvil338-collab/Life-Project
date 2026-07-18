@@ -3,15 +3,19 @@ function renderAll(){
   renderProfile();
   renderMissionFilters();
   renderMissions();
+  renderMissionStreak();
   renderTargetGoals();
   renderProjects();
   renderReadingTracker();
   renderBooks();
   renderTrades();
+  renderTradingPlan();
   renderFinance();
   renderDailyLog();
+  renderNotes();
   renderAchievements();
   renderStats();
+  renderRecap();
   renderChartTabs();
   drawChart();
 }

@@ -24,6 +24,7 @@
       <li><a href="#trading">Trading</a></li>
       <li><a href="#finance">Finance</a></li>
       <li><a href="#journal">Journal</a></li>
+      <li><a href="#notes">Notes</a></li>
       <li><a href="#dashboard">Dashboard</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -109,6 +110,7 @@
       <div>
         <div class="section-title">Today's Mission</div>
         <div class="section-sub">Selesaikan quest untuk mendapatkan XP dan menaikkan skill terkait.</div>
+        <div class="muted" id="missionStreakDisplay" style="margin-top:6px;font-size:13px;"></div>
       </div>
       <button class="btn btn-primary btn-sm" onclick="openMissionModal()">+ Tambah Mission</button>
     </div>
@@ -180,9 +182,10 @@
       <button class="btn btn-primary btn-sm" onclick="openTradeModal()">+ Tambah Trade</button>
     </div>
     <div class="card" style="margin-bottom:24px;">
-      <div class="card-title" style="font-size:16px;">Equity Curve (Profit/Loss Kumulatif)</div>
+      <div class="card-title" style="font-size:16px;">Equity Curve (Pips Kumulatif)</div>
       <canvas id="tradeEquityChart" height="90"></canvas>
     </div>
+    <div class="card" id="tradingPlanCard" style="margin-bottom:24px;"></div>
     <div class="scroll-x">
       <table id="tradeTable"></table>
     </div>
@@ -228,12 +231,34 @@
   </div>
 </section>
 
+<!-- ============ NOTES / INSIGHT VAULT ============ -->
+<section class="section" id="notes">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="section-title">Notes &amp; Insight Vault</div>
+        <div class="section-sub">Simpan ide, insight belajar, atau ringkasan konsep penting.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openNoteModal()">+ Tambah Catatan</button>
+    </div>
+    <input id="notesSearch" oninput="searchNotes()" placeholder="Cari catatan berdasarkan judul, isi, atau tag..." style="margin-bottom:24px;">
+    <div class="list-grid" id="notesList"></div>
+  </div>
+</section>
+
 <!-- ============ DASHBOARD / STATISTICS ============ -->
 <section class="section" id="dashboard">
   <div class="container">
     <div class="section-title">Statistics Dashboard</div>
     <div class="section-sub">Ringkasan seluruh perjalanan hidupmu dalam angka.</div>
     <div class="grid grid-4" id="statsGrid" style="margin-bottom:32px;"></div>
+
+    <div class="section-sub" style="margin-bottom:12px;">Recap</div>
+    <div class="filter-chips" style="margin-bottom:16px;">
+      <button class="chip active" id="recapChipWeek" onclick="setRecapPeriod('week')">Minggu Ini</button>
+      <button class="chip" id="recapChipMonth" onclick="setRecapPeriod('month')">Bulan Ini</button>
+    </div>
+    <div class="grid grid-4" id="recapCard" style="margin-bottom:40px;"></div>
 
     <div class="chart-tabs" id="chartTabs"></div>
     <div class="card chart-card" style="margin-bottom:40px;">
@@ -279,6 +304,8 @@
 <script src="reading.js"></script>
 <script src="targets.js"></script>
 <script src="dailylog.js"></script>
+<script src="notes.js"></script>
+<script src="recap.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

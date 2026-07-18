@@ -84,7 +84,7 @@ function drawTradeEquityChart(){
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
   const w = canvas.clientWidth || canvas.parentElement.clientWidth-48;
-  const h = 220;
+  const h = 240;
   canvas.width = w*dpr; canvas.height = h*dpr;
   canvas.style.width = w+'px'; canvas.style.height = h+'px';
   ctx.setTransform(dpr,0,0,dpr,0,0);
@@ -92,36 +92,45 @@ function drawTradeEquityChart(){
 
   const sorted = [...state.trades].sort((a,b)=>(a.date||'').localeCompare(b.date||''));
   let cum = 0;
-  const points = [0, ...sorted.map(t=>{ cum += (parseFloat(t.profit)||0)-(parseFloat(t.loss)||0); return cum; })];
+  const points = [0, ...sorted.map(t=>{ cum += (parseFloat(t.pipsProfit)||0)-(parseFloat(t.pipsLoss)||0); return cum; })];
 
   const max = Math.max(...points, 0);
   const min = Math.min(...points, 0);
-  const pad = 24;
-  const usableW = w - pad*2;
-  const usableH = h - pad*2;
+  const padL = 52, padR = 16, padT = 28, padB = 24;
+  const usableW = w - padL - padR;
+  const usableH = h - padT - padB;
+
+  const finalTotal = points[points.length-1];
+  const finalPositive = finalTotal >= 0;
+  ctx.fillStyle = finalPositive ? '#22C55E' : '#EF4444';
+  ctx.font = 'bold 14px Inter, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(`Total: ${finalPositive?'+':''}${finalTotal.toFixed(1)} pips`, padL, 16);
 
   ctx.strokeStyle = '#334155'; ctx.lineWidth = 1;
+  ctx.fillStyle = '#94A3B8'; ctx.font = '11px Inter, sans-serif'; ctx.textAlign = 'right';
   for(let i=0;i<=4;i++){
-    const y = pad + usableH*i/4;
-    ctx.beginPath(); ctx.moveTo(pad,y); ctx.lineTo(w-pad,y); ctx.stroke();
+    const y = padT + usableH*i/4;
+    const val = max - ((max-min)*i/4);
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(w-padR,y); ctx.stroke();
+    ctx.fillText(val.toFixed(0), padL-8, y+4);
   }
   // zero baseline
-  const zeroY = h - pad - ((0-min)/((max-min)||1))*usableH;
+  const zeroY = padT + usableH - ((0-min)/((max-min)||1))*usableH;
   ctx.strokeStyle = '#475569'; ctx.setLineDash([4,4]);
-  ctx.beginPath(); ctx.moveTo(pad,zeroY); ctx.lineTo(w-pad,zeroY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(padL,zeroY); ctx.lineTo(w-padR,zeroY); ctx.stroke();
   ctx.setLineDash([]);
 
-  const finalPositive = points[points.length-1] >= 0;
   ctx.strokeStyle = finalPositive ? '#22C55E' : '#EF4444';
   ctx.lineWidth = 2.5;
   ctx.beginPath();
   points.forEach((v,i)=>{
-    const x = pad + (points.length<=1?0:usableW*i/(points.length-1));
-    const y = h-pad-((v-min)/((max-min)||1))*usableH;
+    const x = padL + (points.length<=1?0:usableW*i/(points.length-1));
+    const y = padT+usableH-((v-min)/((max-min)||1))*usableH;
     i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
   });
   ctx.stroke();
   ctx.fillStyle = finalPositive ? 'rgba(34,197,94,0.10)' : 'rgba(239,68,68,0.10)';
-  ctx.lineTo(w-pad,h-pad); ctx.lineTo(pad,h-pad); ctx.closePath(); ctx.fill();
+  ctx.lineTo(w-padR,padT+usableH); ctx.lineTo(padL,padT+usableH); ctx.closePath(); ctx.fill();
 }
 

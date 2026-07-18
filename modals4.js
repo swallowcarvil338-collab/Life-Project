@@ -24,8 +24,8 @@ function openTradeModal(id){
       <div class="field"><label>Exit</label><input id="f_exit" type="number" step="any" value="${editing?editing.exit??'':''}"></div>
     </div>
     <div class="form-grid">
-      <div class="field"><label>Profit</label><input id="f_profit" type="number" step="any" value="${editing?editing.profit||0:0}"></div>
-      <div class="field"><label>Loss</label><input id="f_loss" type="number" step="any" value="${editing?editing.loss||0:0}"></div>
+      <div class="field"><label>Pips Untung</label><input id="f_pipsprofit" type="number" step="any" min="0" value="${editing?editing.pipsProfit||0:0}"></div>
+      <div class="field"><label>Pips Rugi</label><input id="f_pipsloss" type="number" step="any" min="0" value="${editing?editing.pipsLoss||0:0}"></div>
     </div>
     <div class="field"><label>Screenshot URL (opsional)</label><input id="f_screenshot" value="${editing?escapeHtml(editing.screenshot||''):''}"></div>
     <div class="form-grid">
@@ -49,8 +49,8 @@ function saveTrade(id){
     exit: document.getElementById('f_exit').value,
     rr: document.getElementById('f_rr').value,
     method: document.getElementById('f_method').value.trim(),
-    profit: document.getElementById('f_profit').value,
-    loss: document.getElementById('f_loss').value,
+    pipsProfit: document.getElementById('f_pipsprofit').value,
+    pipsLoss: document.getElementById('f_pipsloss').value,
     screenshot: document.getElementById('f_screenshot').value.trim(),
     emotion: document.getElementById('f_emotion').value.trim(),
     evaluation: document.getElementById('f_evaluation').value.trim(),
