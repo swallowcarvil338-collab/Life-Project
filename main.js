@@ -4,6 +4,7 @@ function renderAll(){
   renderMissionFilters();
   renderMissions();
   renderMissionStreak();
+  renderLearningTimer();
   renderTargetGoals();
   renderProjects();
   renderReadingTracker();

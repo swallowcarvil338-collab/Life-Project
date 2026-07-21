@@ -87,8 +87,8 @@ function renderStats(){
   const items = [
     {label:'Hari Aktif', val:s.stats.activeDays},
     {label:'Total XP', val:s.profile.totalXP},
-    {label:'Jam Belajar', val:s.stats.learningHours},
-    {label:'Jam Membaca', val:s.stats.readingHours},
+    {label:'Jam Belajar', val:Math.round(s.stats.learningHours)},
+    {label:'Jam Membaca', val:Math.round(s.stats.readingHours)},
     {label:'Jam Trading', val:s.stats.tradingHours},
     {label:'Jumlah Buku', val:s.books.length},
     {label:'Jumlah Quest', val:s.stats.missionCompletions},

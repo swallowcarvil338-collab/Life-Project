@@ -35,6 +35,7 @@ function defaultState(){
     assetAllocation:[], // {id,assetName,category,value}
     readingSessions:[], // {id,date,bookId,minutes,pages}
     activeReadingSession:null, // {startTime,bookId}
+    activeLearningSession:null, // {startTime}
     dailyLogs:[], // {date,mood,evaluation,gratitude:[string,string,string]}
     notes:[], // {id,title,content,tag,date}
     tradingPlan:'',
@@ -53,7 +54,7 @@ function loadState(){
     const parsed = JSON.parse(raw);
     // merge with defaults to survive future field additions
     const def = defaultState();
-    const merged = {...def, ...parsed, profile:{...def.profile,...parsed.profile}, skills:{...def.skills,...(parsed.skills||{})}, targets:{...def.targets,...(parsed.targets||{})}, stats:{...def.stats,...(parsed.stats||{})}, financeGoals:parsed.financeGoals||[], assetAllocation:parsed.assetAllocation||[], readingSessions:parsed.readingSessions||[], activeReadingSession:parsed.activeReadingSession||null};
+    const merged = {...def, ...parsed, profile:{...def.profile,...parsed.profile}, skills:{...def.skills,...(parsed.skills||{})}, targets:{...def.targets,...(parsed.targets||{})}, stats:{...def.stats,...(parsed.stats||{})}, financeGoals:parsed.financeGoals||[], assetAllocation:parsed.assetAllocation||[], readingSessions:parsed.readingSessions||[], activeReadingSession:parsed.activeReadingSession||null, activeLearningSession:parsed.activeLearningSession||null};
     // migrate missions: old format used a single boolean `done`; new format resets daily via completedDates
     merged.missions = (merged.missions||[]).map(m=>{
       if(m.completedDates) return m;
