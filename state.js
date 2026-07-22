@@ -39,6 +39,7 @@ function defaultState(){
     dailyLogs:[], // {date,mood,evaluation,gratitude:[string,string,string]}
     notes:[], // {id,title,content,tag,date}
     tradingPlan:'',
+    cashflow:[], // {id,date,type:'income'|'expense',category,amount,notes}
     achievements:{}, // id -> {unlocked:true, date}
     stats:{activeDays:0, lastActiveDate:null, learningHours:0, readingHours:0, tradingHours:0, missionCompletions:0},
     history:[] // {date, totalXP}
@@ -64,6 +65,9 @@ function loadState(){
     merged.targetGoals = merged.targetGoals || [];
     merged.dailyLogs = merged.dailyLogs || [];
     merged.notes = merged.notes || [];
+    merged.cashflow = merged.cashflow || [];
+    // migrate old book status "Rencana" (unowned plan) to "Wishlist"
+    merged.books = (merged.books||[]).map(b=> b.status==='Rencana' ? {...b, status:'Wishlist'} : b);
     // clean skills object down to the current 6-skill list (drops retired skills, keeps progress for kept ones)
     merged.skills = Object.fromEntries(SKILL_LIST.map(k=>[k, merged.skills[k] || {level:1,xp:0}]));
     if(merged.targetGoals.length===0 && merged.targets){

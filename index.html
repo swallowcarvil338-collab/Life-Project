@@ -163,12 +163,23 @@
       </div>
       <button class="btn btn-primary btn-sm" onclick="openBookModal()">+ Tambah Buku</button>
     </div>
+    <div class="section-sub" style="margin-bottom:12px;">Sedang Dibaca</div>
     <div class="list-grid" id="bookList"></div>
 
     <div style="margin-top:32px;">
       <div class="section-sub" style="margin-bottom:12px;">Selesai dibaca (geser ke samping)</div>
       <div class="finished-books-row" id="finishedBookRow"></div>
     </div>
+
+    <div class="card" id="bookSpendCard" style="margin:32px 0 40px;"></div>
+
+    <div class="section-header-row">
+      <div>
+        <div class="section-title" style="font-size:22px;">Wishlist Buku</div>
+        <div class="section-sub">Buku yang ingin dibeli — belum dimiliki.</div>
+      </div>
+    </div>
+    <div class="list-grid" id="wishlistBookList"></div>
   </div>
 </section>
 
@@ -182,6 +193,8 @@
       </div>
       <button class="btn btn-primary btn-sm" onclick="openTradeModal()">+ Tambah Trade</button>
     </div>
+    <div class="section-sub" style="margin-bottom:12px;">Statistik Trading</div>
+    <div class="grid grid-4" id="tradeStatsGrid" style="margin-bottom:24px;"></div>
     <div class="card" style="margin-bottom:24px;">
       <div class="card-title" style="font-size:16px;">Equity Curve (Pips Kumulatif)</div>
       <canvas id="tradeEquityChart" height="90"></canvas>
@@ -214,6 +227,16 @@
     </div>
     <div class="card" id="allocSummaryCard" style="margin-bottom:20px;"></div>
     <div id="allocList"></div>
+
+    <div class="section-header-row" style="margin-top:60px;">
+      <div>
+        <div class="section-title">Pemasukan &amp; Pengeluaran</div>
+        <div class="section-sub">Catat cashflow harian — muncul otomatis di Weekly/Monthly Recap.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openCashflowModal()">+ Tambah</button>
+    </div>
+    <div class="card" id="cashflowSummaryCard" style="margin-bottom:20px;"></div>
+    <div id="cashflowList"></div>
   </div>
 </section>
 
@@ -307,6 +330,7 @@
 <script src="targets.js"></script>
 <script src="dailylog.js"></script>
 <script src="notes.js"></script>
+<script src="cashflow.js"></script>
 <script src="recap.js"></script>
 <script src="main.js"></script>
 </body>

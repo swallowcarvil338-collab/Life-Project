@@ -69,6 +69,56 @@ function saveTradingPlan(){
   closeModal(); saveAndRenderAll();
 }
 
+/* ---------- 10c. TRADING STATISTICS ---------- */
+function computeTradeStats(){
+  const sorted = [...state.trades].sort((a,b)=> (a.date||'').localeCompare(b.date||''));
+  let wins=0, losses=0;
+  const results = sorted.map(t=>{
+    const net = (parseFloat(t.pipsProfit)||0)-(parseFloat(t.pipsLoss)||0);
+    if(net>0) wins++; else if(net<0) losses++;
+    return net;
+  });
+  const total = sorted.length;
+  const wr = total ? Math.round((wins/total)*100) : 0;
+
+  let curStreak=0, curType=null;
+  for(let i=results.length-1;i>=0;i--){
+    const type = results[i]>0?'win':(results[i]<0?'loss':null);
+    if(type===null) break;
+    if(curType===null) curType=type;
+    if(type!==curType) break;
+    curStreak++;
+  }
+  const winStreak = curType==='win'?curStreak:0;
+  const lossStreak = curType==='loss'?curStreak:0;
+
+  const now = new Date();
+  const weekStart = new Date(now); weekStart.setDate(now.getDate()-6);
+  const weekStartStr = weekStart.toISOString().slice(0,10);
+  const monthStart = new Date(now); monthStart.setDate(now.getDate()-29);
+  const monthStartStr = monthStart.toISOString().slice(0,10);
+  const weekPips = sorted.filter(t=>t.date>=weekStartStr).reduce((a,t)=>a+(parseFloat(t.pipsProfit)||0)-(parseFloat(t.pipsLoss)||0),0);
+  const monthPips = sorted.filter(t=>t.date>=monthStartStr).reduce((a,t)=>a+(parseFloat(t.pipsProfit)||0)-(parseFloat(t.pipsLoss)||0),0);
+
+  return {total, wins, losses, wr, winStreak, lossStreak, weekPips, monthPips};
+}
+function renderTradeStats(){
+  const s = computeTradeStats();
+  const items = [
+    {label:'Total Trade', val:s.total},
+    {label:'Win Trade', val:s.wins},
+    {label:'Loss Trade', val:s.losses},
+    {label:'Win Rate', val:s.wr+'%'},
+    {label:'Win Beruntun', val:s.winStreak},
+    {label:'Loss Beruntun', val:s.lossStreak},
+    {label:'Pips Minggu Ini', val:`${s.weekPips>=0?'+':''}${s.weekPips.toFixed(1)}`},
+    {label:'Pips Bulan Ini', val:`${s.monthPips>=0?'+':''}${s.monthPips.toFixed(1)}`},
+  ];
+  document.getElementById('tradeStatsGrid').innerHTML = items.map(i=>`
+    <div class="card stat-card"><div class="stat-value" style="font-size:20px;">${i.val}</div><div class="stat-label">${i.label}</div></div>
+  `).join('');
+}
+
 /* ---------- 11. RENDER: ACHIEVEMENTS ---------- */
 function renderAchievements(){
   document.getElementById('achievementGrid').innerHTML = ACHIEVEMENT_DEFS.map(def=>{

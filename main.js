@@ -10,8 +10,10 @@ function renderAll(){
   renderReadingTracker();
   renderBooks();
   renderTrades();
+  renderTradeStats();
   renderTradingPlan();
   renderFinance();
+  renderCashflow();
   renderDailyLog();
   renderNotes();
   renderAchievements();
