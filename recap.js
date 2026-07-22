@@ -37,6 +37,10 @@ function renderRecap(){
   const logsFilled = state.dailyLogs.filter(l=>l.date>=startStr).length;
   const goalsAchieved = state.targetGoals.filter(g=> g.done && g.doneDate && g.doneDate>=startStr).length;
 
+  const cfInPeriod = state.cashflow.filter(c=>c.date>=startStr);
+  const income = cfInPeriod.filter(c=>c.type==='income').reduce((a,c)=>a+(parseFloat(c.amount)||0),0);
+  const expense = cfInPeriod.filter(c=>c.type==='expense').reduce((a,c)=>a+(parseFloat(c.amount)||0),0);
+
   const items = [
     {label:'XP Diperoleh', val: xpGained>=0?`+${xpGained}`:xpGained},
     {label:'Mission Selesai', val: missionsDone},
@@ -47,6 +51,9 @@ function renderRecap(){
     {label:'Halaman Dibaca', val: readPages},
     {label:'Evaluasi Harian Terisi', val: `${logsFilled}/${recapPeriod==='week'?7:30}`},
     {label:'Tujuan Tercapai', val: goalsAchieved},
+    {label:'Pemasukan', val: fmtIDR(income)},
+    {label:'Pengeluaran', val: fmtIDR(expense)},
+    {label:'Selisih (Saldo)', val: fmtIDR(income-expense)},
   ];
   grid.innerHTML = items.map(i=>`
     <div class="card stat-card"><div class="stat-value">${i.val}</div><div class="stat-label">${i.label}</div></div>

@@ -278,7 +278,7 @@ textarea{resize:vertical;min-height:70px;}
 .status-tag{padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:0.5px;}
 .status-selesai,.status-menang,.status-selesai-project{background:rgba(34,197,94,0.15);color:var(--success);}
 .status-proses,.status-berjalan{background:rgba(250,204,21,0.15);color:var(--warning);}
-.status-rencana,.status-kalah{background:rgba(239,68,68,0.15);color:var(--danger);}
+.status-rencana,.status-kalah,.status-wishlist{background:rgba(239,68,68,0.15);color:var(--danger);}
 .trade-card .rr{font-weight:800;font-size:20px;}
 .rr-pos{color:var(--success);}
 .rr-neg{color:var(--danger);}
@@ -401,3 +401,6 @@ footer .brand{justify-content:center;margin-bottom:12px;}
 /* ---------- Notes / Insight Vault ---------- */
 .note-content{font-size:13px;color:var(--text2);white-space:pre-wrap;max-height:160px;overflow-y:auto;}
 #notesSearch{width:100%;}
+
+/* ---------- Cashflow ---------- */
+#cashflowList .mission-item{gap:12px;}

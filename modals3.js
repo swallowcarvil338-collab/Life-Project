@@ -20,16 +20,17 @@ function openBookModal(id, keepCover){
     </div>
     <div class="form-grid">
       <div class="field"><label>Status</label>
-        <select id="f_status">${['Rencana','Proses','Selesai'].map(s=>`<option ${editing&&editing.status===s?'selected':''}>${s}</option>`).join('')}</select>
+        <select id="f_status">${['Wishlist','Proses','Selesai'].map(s=>`<option ${editing&&editing.status===s?'selected':''}>${s}</option>`).join('')}</select>
       </div>
       <div class="field"><label>Format</label>
         <select id="f_format">${['Fisik','Ebook'].map(s=>`<option ${editing&&editing.format===s?'selected':''}>${s}</option>`).join('')}</select>
       </div>
     </div>
     <div class="form-grid">
-      <div class="field"><label>Tanggal Selesai</label><input id="f_finish" type="date" value="${editing&&editing.finishDate?editing.finishDate:''}"></div>
+      <div class="field"><label>Harga (Rp)</label><input id="f_price" type="number" min="0" value="${editing?editing.price||0:0}"></div>
       <div class="field"><label>Jumlah Halaman</label><input id="f_pages" type="number" value="${editing?editing.pages||'':''}"></div>
     </div>
+    <div class="field"><label>Tanggal Selesai</label><input id="f_finish" type="date" value="${editing&&editing.finishDate?editing.finishDate:''}"></div>
     <div class="field"><label>Rating (1-5)</label><input id="f_rating" type="number" min="0" max="5" value="${editing?editing.rating||'':''}"></div>
     <div class="field"><label>Insight</label><textarea id="f_insight">${editing?escapeHtml(editing.insight||''):''}</textarea></div>
     <div class="field"><label>Quote Favorit</label><textarea id="f_quote">${editing?escapeHtml(editing.quote||''):''}</textarea></div>
@@ -77,6 +78,7 @@ function saveBook(id){
     category: document.getElementById('f_category').value.trim(),
     status: document.getElementById('f_status').value,
     format: document.getElementById('f_format').value,
+    price: parseFloat(document.getElementById('f_price').value)||0,
     finishDate: document.getElementById('f_finish').value,
     pages: parseInt(document.getElementById('f_pages').value)||0,
     rating: parseInt(document.getElementById('f_rating').value)||0,
@@ -95,6 +97,13 @@ function saveBook(id){
     state.stats.readingHours += Math.round((data.pages||0)/40) || 1;
   }
   closeModal(); saveAndRenderAll();
+}
+function markBookAsBought(id){
+  const b = state.books.find(x=>x.id===id);
+  if(!b) return;
+  b.status = 'Proses';
+  saveAndRenderAll();
+  showToast('Buku ditandai sudah dibeli','');
 }
 
 /* ---------- 20. TRADE MODAL ---------- */
