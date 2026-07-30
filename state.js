@@ -19,11 +19,13 @@ function defaultState(){
   return {
     profile:{
       name:'Rofik', avatarLetter:'R', avatarPhoto:null, title:'Newcomer of Project 21',
-      motto:'Disiplin hari ini adalah kebebasan di masa depan.',
+      mottos:['Disiplin hari ini adalah kebebasan di masa depan.'],
+      activeMottoIndex:0,
       joinDate: new Date().toISOString().slice(0,10),
       totalXP:0, level:1, xp:0,
       currentMissionId:null
     },
+    contact:{whatsapp:'', email:'', instagram:''},
     skills: Object.fromEntries(SKILL_LIST.map(s=>[s,{level:1,xp:0}])),
     missions:[],
     targets:{oneYear:'',threeYear:'',fiveYear:'',tenYear:'',lifeMission:''},
@@ -55,7 +57,15 @@ function loadState(){
     const parsed = JSON.parse(raw);
     // merge with defaults to survive future field additions
     const def = defaultState();
-    const merged = {...def, ...parsed, profile:{...def.profile,...parsed.profile}, skills:{...def.skills,...(parsed.skills||{})}, targets:{...def.targets,...(parsed.targets||{})}, stats:{...def.stats,...(parsed.stats||{})}, financeGoals:parsed.financeGoals||[], assetAllocation:parsed.assetAllocation||[], readingSessions:parsed.readingSessions||[], activeReadingSession:parsed.activeReadingSession||null, activeLearningSession:parsed.activeLearningSession||null};
+    const merged = {...def, ...parsed, profile:{...def.profile,...parsed.profile}, contact:{...def.contact,...(parsed.contact||{})}, skills:{...def.skills,...(parsed.skills||{})}, targets:{...def.targets,...(parsed.targets||{})}, stats:{...def.stats,...(parsed.stats||{})}, financeGoals:parsed.financeGoals||[], assetAllocation:parsed.assetAllocation||[], readingSessions:parsed.readingSessions||[], activeReadingSession:parsed.activeReadingSession||null, activeLearningSession:parsed.activeLearningSession||null};
+    // migrate old single-string motto to the new mottos[] array format
+    if(parsed.profile && parsed.profile.motto && !parsed.profile.mottos){
+      merged.profile.mottos = [parsed.profile.motto];
+      merged.profile.activeMottoIndex = 0;
+    }
+    if(!merged.profile.mottos || merged.profile.mottos.length===0){
+      merged.profile.mottos = def.profile.mottos;
+    }
     // migrate missions: old format used a single boolean `done`; new format resets daily via completedDates
     merged.missions = (merged.missions||[]).map(m=>{
       if(m.completedDates) return m;

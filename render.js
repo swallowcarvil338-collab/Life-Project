@@ -15,7 +15,7 @@ function renderProfile(){
   avatarEl.innerHTML = p.avatarPhoto ? `<img src="${p.avatarPhoto}" alt="Foto profil">` : escapeHtml(p.avatarLetter || p.name.charAt(0).toUpperCase());
   document.getElementById('charName').textContent = p.name;
   document.getElementById('charTitleTxt').textContent = '"'+p.title+'"';
-  document.getElementById('charMotto').textContent = '"'+p.motto+'"';
+  document.getElementById('charMotto').textContent = '"'+(p.mottos[p.activeMottoIndex]||p.mottos[0]||'')+'"';
   const rank = rankForLevel(p.level);
   document.getElementById('charRank').textContent = rank.toUpperCase();
   document.getElementById('levelNum').textContent = p.level;
@@ -145,3 +145,26 @@ function escapeHtml(str){
 }
 
 /* ---------- 7. RENDER: TARGETS ---------- */
+
+/* ---------- 33. CONTACT LINKS ---------- */
+function normalizeWhatsapp(num){
+  let digits = (num||'').replace(/[^\d]/g,'');
+  if(digits.startsWith('0')) digits = '62'+digits.slice(1);
+  return digits;
+}
+function renderContactLinks(){
+  const c = state.contact;
+  const row = document.getElementById('contactLinksRow');
+  const links = [];
+  if(c.whatsapp){
+    links.push(`<a class="btn btn-outline btn-sm" href="https://wa.me/${normalizeWhatsapp(c.whatsapp)}" target="_blank" rel="noopener">📱 WhatsApp</a>`);
+  }
+  if(c.email){
+    links.push(`<a class="btn btn-outline btn-sm" href="mailto:${escapeHtml(c.email)}">✉️ Email</a>`);
+  }
+  if(c.instagram){
+    const handle = c.instagram.replace(/^@/,'');
+    links.push(`<a class="btn btn-outline btn-sm" href="https://instagram.com/${encodeURIComponent(handle)}" target="_blank" rel="noopener">📷 Instagram</a>`);
+  }
+  row.innerHTML = links.length ? links.join('') : `<span class="muted" style="font-size:13px;">Belum ada kontak diisi.</span>`;
+}

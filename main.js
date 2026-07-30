@@ -1,6 +1,7 @@
 /* ---------- 21. MASTER RENDER ---------- */
 function renderAll(){
   renderProfile();
+  renderContactLinks();
   renderMissionFilters();
   renderMissions();
   renderMissionStreak();
@@ -64,3 +65,4 @@ function confirmReset(){
 /* ---------- 24. INIT ---------- */
 touchActiveDay();
 saveAndRenderAll();
+renderBiasCard();

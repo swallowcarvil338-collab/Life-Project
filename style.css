@@ -376,6 +376,7 @@ footer .brand{justify-content:center;margin-bottom:12px;}
   display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;margin-top:2px;
 }
 .target-goal-item.done .check-square{background:var(--success);border-color:var(--success);color:#0B1120;}
+.check-square.done{background:var(--success);border-color:var(--success);color:#0B1120;}
 .target-goal-item.done .tg-text{text-decoration:line-through;color:var(--text2);}
 .tg-num{font-weight:800;color:var(--primary);font-size:13px;flex-shrink:0;margin-top:2px;}
 .tg-body{flex:1;min-width:0;}
