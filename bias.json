@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Senin, 03-08-2026",
-  "date": "2026-08-03",
+  "label": "Bias hari Selasa, 04-08-2026",
+  "date": "2026-08-04",
   "bias": "No Bias",
-  "reason": "Candle kedua men-sweep kedua sisi candle pertama sekaligus.",
+  "reason": "Candle kedua terkurung penuh di range candle pertama.",
   "reference_candles": {
-    "candle1_date": "2026-08-02",
-    "candle2_date": "2026-08-03"
+    "candle1_date": "2026-08-03",
+    "candle2_date": "2026-08-04"
   },
-  "updated_at": "2026-08-03T13:56:59.854250+00:00"
+  "updated_at": "2026-08-04T11:51:43.252770+00:00"
 }
