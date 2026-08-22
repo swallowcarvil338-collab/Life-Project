@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Jumat, 21-08-2026",
-  "date": "2026-08-21",
-  "bias": "Bearish",
-  "reason": "Reversal: high candle pertama di-sweep, close candle kedua balik masuk ke range candle pertama.",
+  "label": "Bias hari Sabtu, 22-08-2026",
+  "date": "2026-08-22",
+  "bias": "No Bias",
+  "reason": "Candle kedua terkurung penuh di range candle pertama.",
   "reference_candles": {
-    "candle1_date": "2026-08-20",
-    "candle2_date": "2026-08-21"
+    "candle1_date": "2026-08-21",
+    "candle2_date": "2026-08-22"
   },
-  "updated_at": "2026-08-21T04:54:19.467127+00:00"
+  "updated_at": "2026-08-22T04:48:50.854490+00:00"
 }
