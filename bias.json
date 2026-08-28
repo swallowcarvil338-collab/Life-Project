@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Kamis, 27-08-2026",
-  "date": "2026-08-27",
-  "bias": "Bullish",
-  "reason": "Reversal: low candle pertama di-sweep, close candle kedua balik masuk ke range candle pertama.",
+  "label": "Bias hari Jumat, 28-08-2026",
+  "date": "2026-08-28",
+  "bias": "Bearish",
+  "reason": "Continuation: body candle kedua break di bawah low candle pertama dan candle-nya bearish.",
   "reference_candles": {
-    "candle1_date": "2026-08-26",
-    "candle2_date": "2026-08-27"
+    "candle1_date": "2026-08-27",
+    "candle2_date": "2026-08-28"
   },
-  "updated_at": "2026-08-27T15:14:54.484271+00:00"
+  "updated_at": "2026-08-28T16:38:39.806673+00:00"
 }
