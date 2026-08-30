@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Sabtu, 29-08-2026",
-  "date": "2026-08-29",
+  "label": "Bias hari Minggu, 30-08-2026",
+  "date": "2026-08-30",
   "bias": "No Bias",
   "reason": "Candle kedua terkurung penuh di range candle pertama.",
   "reference_candles": {
-    "candle1_date": "2026-08-28",
-    "candle2_date": "2026-08-29"
+    "candle1_date": "2026-08-29",
+    "candle2_date": "2026-08-30"
   },
-  "updated_at": "2026-08-29T11:05:24.208739+00:00"
+  "updated_at": "2026-08-30T09:56:24.417881+00:00"
 }
