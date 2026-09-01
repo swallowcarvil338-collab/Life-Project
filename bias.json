@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Senin, 31-08-2026",
-  "date": "2026-08-31",
-  "bias": "No Bias",
-  "reason": "Candle kedua men-sweep kedua sisi candle pertama sekaligus.",
+  "label": "Bias hari Selasa, 01-09-2026",
+  "date": "2026-09-01",
+  "bias": "Bearish",
+  "reason": "Continuation: body candle kedua break di bawah low candle pertama dan candle-nya bearish.",
   "reference_candles": {
-    "candle1_date": "2026-08-30",
-    "candle2_date": "2026-08-31"
+    "candle1_date": "2026-08-31",
+    "candle2_date": "2026-09-01"
   },
-  "updated_at": "2026-08-31T10:51:31.652130+00:00"
+  "updated_at": "2026-09-01T09:24:16.588652+00:00"
 }
