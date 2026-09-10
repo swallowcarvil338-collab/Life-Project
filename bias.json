@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Rabu, 09-09-2026",
-  "date": "2026-09-09",
-  "bias": "Bullish",
-  "reason": "Reversal: low candle pertama di-sweep, close candle kedua balik masuk ke range candle pertama.",
+  "label": "Bias hari Kamis, 10-09-2026",
+  "date": "2026-09-10",
+  "bias": "No Bias",
+  "reason": "Candle kedua terkurung penuh di range candle pertama.",
   "reference_candles": {
-    "candle1_date": "2026-09-08",
-    "candle2_date": "2026-09-09"
+    "candle1_date": "2026-09-09",
+    "candle2_date": "2026-09-10"
   },
-  "updated_at": "2026-09-09T08:57:52.602345+00:00"
+  "updated_at": "2026-09-10T08:56:51.435946+00:00"
 }
