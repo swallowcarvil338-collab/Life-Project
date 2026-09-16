@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Selasa, 15-09-2026",
-  "date": "2026-09-15",
-  "bias": "No Bias",
-  "reason": "Candle kedua terkurung penuh di range candle pertama.",
+  "label": "Bias hari Rabu, 16-09-2026",
+  "date": "2026-09-16",
+  "bias": "Bullish",
+  "reason": "Continuation: body candle kedua break di atas high candle pertama dan candle-nya bullish.",
   "reference_candles": {
-    "candle1_date": "2026-09-14",
-    "candle2_date": "2026-09-15"
+    "candle1_date": "2026-09-15",
+    "candle2_date": "2026-09-16"
   },
-  "updated_at": "2026-09-15T09:24:49.517953+00:00"
+  "updated_at": "2026-09-16T09:18:00.217673+00:00"
 }
