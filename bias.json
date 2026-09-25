@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Kamis, 24-09-2026",
-  "date": "2026-09-24",
-  "bias": "Bearish",
-  "reason": "Continuation: body candle kedua break di bawah low candle pertama dan candle-nya bearish.",
+  "label": "Bias hari Jumat, 25-09-2026",
+  "date": "2026-09-25",
+  "bias": "No Bias",
+  "reason": "Candle kedua terkurung penuh di range candle pertama.",
   "reference_candles": {
-    "candle1_date": "2026-09-23",
-    "candle2_date": "2026-09-24"
+    "candle1_date": "2026-09-24",
+    "candle2_date": "2026-09-25"
   },
-  "updated_at": "2026-09-24T09:18:24.089171+00:00"
+  "updated_at": "2026-09-25T09:36:27.858050+00:00"
 }
