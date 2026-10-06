@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Senin, 05-10-2026",
-  "date": "2026-10-05",
-  "bias": "No Bias",
-  "reason": "Candle kedua men-sweep kedua sisi candle pertama sekaligus.",
+  "label": "Bias hari Selasa, 06-10-2026",
+  "date": "2026-10-06",
+  "bias": "Bullish",
+  "reason": "Reversal: low candle pertama di-sweep, close candle kedua balik masuk ke range candle pertama.",
   "reference_candles": {
-    "candle1_date": "2026-10-04",
-    "candle2_date": "2026-10-05"
+    "candle1_date": "2026-10-05",
+    "candle2_date": "2026-10-06"
   },
-  "updated_at": "2026-10-05T11:28:41.133789+00:00"
+  "updated_at": "2026-10-06T11:16:22.660739+00:00"
 }
