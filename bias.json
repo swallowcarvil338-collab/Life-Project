@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Selasa, 13-10-2026",
-  "date": "2026-10-13",
-  "bias": "Bullish",
-  "reason": "Reversal: low candle pertama di-sweep, close candle kedua balik masuk ke range candle pertama.",
+  "label": "Bias hari Rabu, 14-10-2026",
+  "date": "2026-10-14",
+  "bias": "Bearish",
+  "reason": "Continuation: body candle kedua break di bawah low candle pertama dan candle-nya bearish.",
   "reference_candles": {
-    "candle1_date": "2026-10-12",
-    "candle2_date": "2026-10-13"
+    "candle1_date": "2026-10-13",
+    "candle2_date": "2026-10-14"
   },
-  "updated_at": "2026-10-13T11:47:44.592109+00:00"
+  "updated_at": "2026-10-14T09:30:47.153685+00:00"
 }
