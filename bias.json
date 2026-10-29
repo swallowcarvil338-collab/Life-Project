@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Rabu, 28-10-2026",
-  "date": "2026-10-28",
-  "bias": "Bearish",
-  "reason": "Reversal: high candle pertama di-sweep, close candle kedua balik masuk ke range candle pertama.",
+  "label": "Bias hari Kamis, 29-10-2026",
+  "date": "2026-10-29",
+  "bias": "No Bias",
+  "reason": "Candle kedua men-sweep kedua sisi candle pertama sekaligus.",
   "reference_candles": {
-    "candle1_date": "2026-10-27",
-    "candle2_date": "2026-10-28"
+    "candle1_date": "2026-10-28",
+    "candle2_date": "2026-10-29"
   },
-  "updated_at": "2026-10-28T10:34:35.967536+00:00"
+  "updated_at": "2026-10-29T10:53:35.469449+00:00"
 }
