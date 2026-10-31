@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Jumat, 30-10-2026",
-  "date": "2026-10-30",
-  "bias": "Bearish",
-  "reason": "Continuation: body candle kedua break di bawah low candle pertama dan candle-nya bearish.",
+  "label": "Bias hari Sabtu, 31-10-2026",
+  "date": "2026-10-31",
+  "bias": "No Bias",
+  "reason": "Candle kedua terkurung penuh di range candle pertama.",
   "reference_candles": {
-    "candle1_date": "2026-10-29",
-    "candle2_date": "2026-10-30"
+    "candle1_date": "2026-10-30",
+    "candle2_date": "2026-10-31"
   },
-  "updated_at": "2026-10-30T10:51:51.140629+00:00"
+  "updated_at": "2026-10-31T10:23:09.291053+00:00"
 }
