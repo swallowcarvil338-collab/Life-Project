@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Minggu, 15-11-2026",
-  "date": "2026-11-15",
+  "label": "Bias hari Senin, 16-11-2026",
+  "date": "2026-11-16",
   "bias": "No Bias",
-  "reason": "Candle kedua terkurung penuh di range candle pertama.",
+  "reason": "Candle kedua men-sweep kedua sisi candle pertama sekaligus.",
   "reference_candles": {
-    "candle1_date": "2026-11-14",
-    "candle2_date": "2026-11-15"
+    "candle1_date": "2026-11-15",
+    "candle2_date": "2026-11-16"
   },
-  "updated_at": "2026-11-15T11:56:50.581247+00:00"
+  "updated_at": "2026-11-16T12:44:32.790052+00:00"
 }
