@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Kamis, 19-11-2026",
-  "date": "2026-11-19",
+  "label": "Bias hari Jumat, 20-11-2026",
+  "date": "2026-11-20",
   "bias": "Bearish",
   "reason": "Continuation: body candle kedua break di bawah low candle pertama dan candle-nya bearish.",
   "reference_candles": {
-    "candle1_date": "2026-11-18",
-    "candle2_date": "2026-11-19"
+    "candle1_date": "2026-11-19",
+    "candle2_date": "2026-11-20"
   },
-  "updated_at": "2026-11-19T13:05:24.171040+00:00"
+  "updated_at": "2026-11-20T12:53:10.902137+00:00"
 }
