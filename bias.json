@@ -1,11 +1,11 @@
 {
-  "label": "Bias hari Sabtu, 21-11-2026",
-  "date": "2026-11-21",
-  "bias": "Bullish",
-  "reason": "Reversal: low candle pertama di-sweep, close candle kedua balik masuk ke range candle pertama.",
+  "label": "Bias hari Minggu, 22-11-2026",
+  "date": "2026-11-22",
+  "bias": "No Bias",
+  "reason": "Candle kedua terkurung penuh di range candle pertama.",
   "reference_candles": {
-    "candle1_date": "2026-11-20",
-    "candle2_date": "2026-11-21"
+    "candle1_date": "2026-11-21",
+    "candle2_date": "2026-11-22"
   },
-  "updated_at": "2026-11-21T12:38:41.435551+00:00"
+  "updated_at": "2026-11-22T12:34:48.820140+00:00"
 }
